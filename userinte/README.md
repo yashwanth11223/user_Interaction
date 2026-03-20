@@ -1,36 +1,236 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat Application
 
-## Getting Started
+A full-stack real-time chat application built using Next.js, Socket.IO, WebRTC, and MongoDB.
+This application supports real-time messaging, voice notes, file sharing, and video/audio calling between users.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+* Real-time messaging using Socket.IO
+* One-to-one chat system
+* Voice message recording
+* File and image sharing
+* Audio and video calling (WebRTC)
+* Persistent chat history using MongoDB
+* User registration using phone number and name
+* Dynamic user list with profile pictures
+* Separate chat for each user
+
+---
+
+## 🧱 Tech Stack
+
+### Frontend
+
+* Next.js (App Router)
+* React
+* Tailwind CSS
+
+### Backend
+
+* Node.js
+* Express.js
+* Socket.IO
+
+### Database
+
+* MongoDB (Mongoose)
+
+### Realtime & Media
+
+* Socket.IO (real-time communication)
+* WebRTC (simple-peer for calls)
+
+---
+
+## 📁 Project Structure
+
+```
+USERINT/
+│
+├── userinte/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── auth/
+│   │   │   │   ├── login/route.js
+│   │   │   │   ├── register/route.js
+│   │   │   ├── messages/route.js
+│   │   │   ├── socket/route.js
+│   │   │   ├── upload/route.js
+│   │   ├── layout.js
+│   │   ├── page.js   ← Main Chat UI
+│   │   ├── globals.css
+│   │
+│   ├── components/
+│   │   ├── CallPopup.js
+│   │   ├── Message.js
+│   │   ├── VideoCall.js
+│   │
+│   ├── lib/
+│   │   ├── db.js
+│   │
+│   ├── public/
+│   ├── server/
+│   │   ├── models/
+│   │   │   ├── Message.js
+│   │   │   ├── User.js
+│   │   ├── server.js
+│
+├── .env.local
+├── package.json
+├── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🗄️ Database (MongoDB)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app uses MongoDB to store users and messages.
 
-## Learn More
+### Connection String
 
-To learn more about Next.js, take a look at the following resources:
+```
+mongodb://127.0.0.1:27017/chatapp
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Collections
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### Users
 
-## Deploy on Vercel
+* phone (unique)
+* name
+* photo (auto-generated avatar)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Messages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* conversationId
+* from
+* to
+* type (message / voice / file)
+* message / audio / file
+* timestamps
+
+---
+
+## 🔐 Environment Variables (.env.local)
+
+Create a file in root:
+
+```
+.env.local
+```
+
+Add the following:
+
+```
+MONGO_URI=mongodb://127.0.0.1:27017/chatapp
+NEXT_PUBLIC_API_URL=http://127.0.0.1:4000
+NEXT_PUBLIC_SOCKET_URL=http://127.0.0.1:4000
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/YOUR_USERNAME/chat-app.git
+cd chat-app
+```
+
+---
+
+### 2. Install dependencies
+
+```
+npm install
+```
+
+---
+
+### 3. Start MongoDB
+
+Make sure MongoDB is running locally.
+
+---
+
+### 4. Start Backend Server
+
+```
+cd server
+node server.js
+```
+
+Backend runs on:
+
+```
+http://localhost:4000
+```
+
+---
+
+### 5. Start Frontend
+
+```
+npm run dev
+```
+
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 🔌 API Endpoints
+
+### User APIs
+
+* POST `/register` → Register new user
+* GET `/users` → Get all users
+
+### Message APIs
+
+* GET `/messages/:user1/:user2` → Get chat history
+
+---
+
+## 🔄 Socket Events
+
+* `join` → Register user socket
+* `send-message` → Send message
+* `receive-message` → Receive message
+* `callUser` → Initiate call
+* `incomingCall` → Receive call
+* `answerCall` → Accept call
+* `endCall` → End call
+
+## 🔐 Environment Variables (.env.local)
+
+This project uses a .env.local file to store environment-specific configuration such as database connection and backend URLs.
+
+📁 File Location
+
+Create the file in the root of your project:
+```
+.env.local
+```
+🧾 Required Variables
+
+Add the following variables inside .env.local:
+```
+MONGO_URI=mongodb://127.0.0.1:27017/chatapp
+NEXT_PUBLIC_API_URL=http://127.0.0.1:4000
+NEXT_PUBLIC_SOCKET_URL=http://127.0.0.1:4000
+```
+## 👨‍💻 Author
+
+**Yashwanth**
+
+---
+
+## 📜 License
+
