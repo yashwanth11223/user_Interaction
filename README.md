@@ -1,4 +1,4 @@
-Chat Application
+## 🌊Chat Application
 
 A full-stack real-time chat application built using Next.js, Socket.IO, WebRTC, and MongoDB.
 This application supports real-time messaging, voice notes, file sharing, and video/audio calling between users.
@@ -48,7 +48,9 @@ Realtime & Media
 
 USERINT/
 │
+├── .git
 ├── userinte/
+│   ├── .next/
 │   ├── app/
 │   │   ├── api/
 │   │   │   ├── auth/
@@ -57,9 +59,10 @@ USERINT/
 │   │   │   ├── messages/route.js
 │   │   │   ├── socket/route.js
 │   │   │   ├── upload/route.js
+│   │   ├── favicon.ico
+│   │   ├── globals.css
 │   │   ├── layout.js
 │   │   ├── page.js   ← Main Chat UI
-│   │   ├── globals.css
 │   │
 │   ├── components/
 │   │   ├── CallPopup.js
@@ -69,16 +72,25 @@ USERINT/
 │   ├── lib/
 │   │   ├── db.js
 │   │
+│   ├── node_modules/
 │   ├── public/
 │   ├── server/
 │   │   ├── models/
 │   │   │   ├── Message.js
 │   │   │   ├── User.js
-│   │   ├── server.js
+│   │   ├── server.js   ← Express + Socket.IO Server
 │
 ├── .env.local
+├── .gitignore
+├── AGENTS.md
+├── CLAUDE.md
+├── jsconfig.json
+├── next.config.mjs
 ├── package.json
+├── package-lock.json
+├── postcss.config.mjs
 ├── README.md
+├── LICENSE
 
 ---
 
